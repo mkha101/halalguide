@@ -2,10 +2,22 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
 import { api } from "~/utils/api";
-import { searchHalalFood } from "./api/halalfood";
+import React, { useState, FormEvent } from "react";
 
 export default function Home() {
-  const hello = api.example.hello.useQuery({ text: "from tRPC" });
+  const [zipCode, setZipCode] = useState("");
+  const [halalBusinesses, setHalalBusinesses] = useState([]);
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(`/api/halalfood?zipcode=${zipCode}`);
+      const data = await response.json();
+      setHalalBusinesses(data);
+    } catch (error) {
+      console.error("Error retrieving halal food businesses:", error);
+    }
+  };
 
   return (
     <>
@@ -22,7 +34,11 @@ export default function Home() {
             Start Here
           </h1>
 
-          <form className="flex flex-col items-center justify-center">
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col items-center justify-center"
+            method="post"
+          >
             <div className="mb-6 flex flex-col items-center">
               <label
                 htmlFor="zip-code"
@@ -33,6 +49,8 @@ export default function Home() {
               <input
                 type="text"
                 id="zip"
+                value={zipCode}
+                onChange={(e) => setZipCode(e.target.value)}
                 className="block w-full rounded-lg border border-gray-300 bg-white p-2.5 text-sm"
                 placeholder="Zip Code"
                 required
@@ -46,6 +64,12 @@ export default function Home() {
               Search
             </button>
           </form>
+          {halalBusinesses.map((business: any) => (
+            <div key={business.id}>
+              <h3>{business.name}</h3>
+              <p>{business.address}</p>
+            </div>
+          ))}
         </section>
       </main>
     </>

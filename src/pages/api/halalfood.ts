@@ -1,34 +1,32 @@
-import { string } from "zod";
+import { NextApiRequest, NextApiResponse } from "next";
 
-const apiKey = "YOUR_YELP_API_KEY";
+const yelp = require("yelp-fusion");
 
-const searchHalalFood = async (zipCode: string) => {
-  const apiKey = "YOUR_YELP_API_KEY";
-  const url = `https://api.yelp.com/v3/businesses/search?term=halal&location=${zipCode}`;
+const apiKey = process.env.NEXT_PUBLIC_YELP_API_KEY;
+const client = yelp.client(apiKey);
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  const { zipcode } = req.query;
 
   try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-      },
+    const response = await client.search({
+      location: zipcode,
+      categories: "halal",
     });
 
-    const data = response.json();
-    const businesses = data.choices[0].text.trim();
-    return businesses;
+    const businesses = response.jsonBody.businesses;
+    const halalBusinesses = businesses.filter((business: any) => {
+      return business.categories.some((category: any) => {
+        return category.alias === "halal";
+      });
+    });
+
+    res.status(200).json(halalBusinesses);
   } catch (error) {
-    console.error(error);
-    throw new Error("Failed to search for businesses.");
-  }
-};
-
-export default async function handler(req, res) {
-  const { zipCode } = req.body;
-
-  if (req.method === "POST") {
-    try{
-      const businesses = await searchHalalFood(zipCode)
-    }
+    console.error("Error retrieving halal food businesses:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 }
