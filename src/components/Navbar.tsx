@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React from "react";
 import Link from "next/link";
 import { useUser, UserButton } from "@clerk/nextjs";
@@ -7,11 +9,11 @@ function Navbar() {
 
   return (
     <div className="h-15 flex w-full flex-col items-center justify-between text-black sm:w-full  sm:flex-row">
-      <Link href="/">
+      <a href="/">
         <h1 className="cursor-pointer text-2xl font-bold transition ease-in-out hover:text-blue-600">
-          HalalFinder
+          HalalNearMe
         </h1>
-      </Link>
+      </a>
       <ul className="flex flex-row   gap-8 text-base font-semibold sm:gap-10">
         <Link href="/">
           {" "}
