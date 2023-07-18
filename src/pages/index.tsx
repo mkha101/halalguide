@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { api } from "~/utils/api";
 import React, { useState, FormEvent } from "react";
+import Filter from "~/components/Filter";
 
 export default function Home() {
   const [zipCode, setZipCode] = useState("");
@@ -73,6 +74,8 @@ export default function Home() {
               Search
             </button>
           </form>
+
+          <Filter />
           <div role="status">
             {loadingBusinesses && (
               <>
