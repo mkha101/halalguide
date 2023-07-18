@@ -8,7 +8,6 @@ export default function Home() {
   const [zipCode, setZipCode] = useState("");
   const [halalBusinesses, setHalalBusinesses] = useState([]);
   const [loadingBusinesses, setLoadingBusinesses] = useState(false);
-  const [businessPhotos, setBusinessPhotos] = useState([]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,9 +18,6 @@ export default function Home() {
       const response = await fetch(`/api/halalfood?zipcode=${zipCode}`);
       const data = await response.json();
       await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      const photos = data.map((business: any) => business.photos);
-      setBusinessPhotos(photos);
 
       setHalalBusinesses(data);
       console.log(data);
@@ -100,15 +96,55 @@ export default function Home() {
               </>
             )}
           </div>
-          {halalBusinesses.map((business: any) => (
-            <div
-              className="w-100 flex h-80 flex-row rounded border "
-              key={business.id}
-            >
-              <h3 className="font-semibold">{business.name}</h3>
-              <p>{business.address}</p>
-            </div>
-          ))}
+          <div className="flex flex-wrap justify-center">
+            {halalBusinesses.map((business: any) => (
+              <div className="mx-2 mb-4 flex w-full max-w-sm rounded-lg border border-gray-200 bg-white shadow">
+                <a href="#"></a>
+                <div className=" flex flex-col  p-5">
+                  <a href="#">
+                    <img
+                      className="h-20 w-20"
+                      src={business.image_url}
+                      alt=""
+                    />
+                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+                      {business.name}
+                    </h5>
+                    <p className="mb-3 font-normal text-gray-700">
+                      {business.location.address1}
+                    </p>
+                  </a>
+                  <p className="mb-3 font-normal text-gray-700">
+                    {business.price}
+                  </p>
+                  <p className="mb-3 font-normal text-gray-700">
+                    ⭐ {business.rating}
+                  </p>
+                  <a
+                    href="#"
+                    className="inline-flex items-center rounded-lg bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300"
+                  >
+                    {business.phone}{" "}
+                    <svg
+                      className="ml-2 h-3.5 w-3.5"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 14 10"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M1 5h12m0 0L9 1m4 4L9 9"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
         </section>
       </main>
     </>
