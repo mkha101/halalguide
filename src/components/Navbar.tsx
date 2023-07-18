@@ -1,12 +1,14 @@
 import React from "react";
 import Link from "next/link";
+import { SignIn, SignInButton, useUser, SignOutButton } from "@clerk/nextjs";
 
 function Navbar() {
+  const user = useUser();
   return (
-    <div className="h-15 flex w-full flex-row items-center justify-between bg-[#ffffff]  text-black">
+    <div className="h-15 flex w-full flex-row items-center justify-between  text-black">
       <a href="/">
         <h1 className="cursor-pointer text-2xl font-bold transition ease-in-out hover:text-blue-600">
-          HalalGuide
+          HalalFinder
         </h1>
       </a>
 
@@ -15,7 +17,19 @@ function Navbar() {
           {" "}
           <li className="">Home</li>
         </Link>
-        <li className="">Sign In</li>
+        {user.isSignedIn ? (
+          <SignOutButton>
+            <span className="cursor-pointer transition ease-in-out hover:text-blue-600">
+              Sign Out
+            </span>
+          </SignOutButton>
+        ) : (
+          <SignInButton>
+            <span className="cursor-pointer transition ease-in-out hover:text-blue-600">
+              Sign In
+            </span>
+          </SignInButton>
+        )}
         <Link href="/contact">
           {" "}
           <li className="">Contact</li>
