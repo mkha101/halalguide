@@ -65,26 +65,13 @@ export default function Home() {
             </button>
           </form>
           {halalBusinesses.map((business: any) => (
-            <div key={business.id}>
-              <h3>{business.name}</h3>
+            <div className="flex" key={business.id}>
+              <h3 className="font-semibold">{business.name}</h3>
               <p>{business.address}</p>
             </div>
           ))}
         </section>
       </main>
     </>
-  );
-}
-
-function AuthShowcase() {
-  const { data: sessionData } = useSession();
-
-  const { data: secretMessage } = api.example.getSecretMessage.useQuery(
-    undefined, // no input
-    { enabled: sessionData?.user !== undefined }
-  );
-
-  return (
-    <div className="flex flex-col items-center justify-center gap-4"></div>
   );
 }
