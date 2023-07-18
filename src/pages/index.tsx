@@ -8,6 +8,7 @@ export default function Home() {
   const [zipCode, setZipCode] = useState("");
   const [halalBusinesses, setHalalBusinesses] = useState([]);
   const [loadingBusinesses, setLoadingBusinesses] = useState(false);
+  const [businessPhotos, setBusinessPhotos] = useState([]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,7 +20,11 @@ export default function Home() {
       const data = await response.json();
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
+      const photos = data.map((business: any) => business.photos);
+      setBusinessPhotos(photos);
+
       setHalalBusinesses(data);
+      console.log(data);
     } catch (error) {
       console.error("Error retrieving halal food businesses:", error);
     } finally {
@@ -96,7 +101,10 @@ export default function Home() {
             )}
           </div>
           {halalBusinesses.map((business: any) => (
-            <div className="flex" key={business.id}>
+            <div
+              className="w-100 flex h-80 flex-row rounded border "
+              key={business.id}
+            >
               <h3 className="font-semibold">{business.name}</h3>
               <p>{business.address}</p>
             </div>

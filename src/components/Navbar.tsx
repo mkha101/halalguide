@@ -18,7 +18,10 @@ function Navbar() {
           <li className="">Home</li>
         </Link>
         {user.isSignedIn ? (
-          <Link href="/">History</Link>
+          <Link href="/history">
+            {" "}
+            <li className="">History</li>
+          </Link>
         ) : (
           <Link href="/signin">
             <li className="">Sign In</li>
