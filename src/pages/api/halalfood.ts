@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { NextApiRequest, NextApiResponse } from "next";
 
 const yelp = require("yelp-fusion");
@@ -13,11 +15,11 @@ export default async function handler(
 
   try {
     const response = await client.search({
-      location: zipcode,
+      location: zipcode as string,
       categories: "halal",
     });
 
-    const businesses = response.jsonBody.businesses;
+    const businesses = response.jsonBody.businesses as Array<any>;
     const halalBusinesses = businesses.filter((business: any) => {
       return business.categories.some((category: any) => {
         return category.alias === "halal";
@@ -25,7 +27,7 @@ export default async function handler(
     });
 
     res.status(200).json(halalBusinesses);
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error retrieving halal food businesses:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }

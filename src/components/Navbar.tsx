@@ -1,17 +1,17 @@
 import React from "react";
 import Link from "next/link";
-import { SignIn, useUser, UserButton } from "@clerk/nextjs";
+import { useUser, UserButton } from "@clerk/nextjs";
 
 function Navbar() {
   const user = useUser();
 
   return (
     <div className="h-15 flex w-full flex-col items-center justify-between text-black sm:w-full  sm:flex-row">
-      <a href="/">
+      <Link href="/">
         <h1 className="cursor-pointer text-2xl font-bold transition ease-in-out hover:text-blue-600">
           HalalFinder
         </h1>
-      </a>
+      </Link>
       <ul className="flex flex-row   gap-8 text-base font-semibold sm:gap-10">
         <Link href="/">
           {" "}
