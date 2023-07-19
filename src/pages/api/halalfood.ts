@@ -1,4 +1,5 @@
 /* eslint-disable */
+import { useEffect, useState } from "react";
 
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -11,7 +12,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { zipcode } = req.query;
+  const { zipcode, longitude, latitude } = req.query;
 
   try {
     const response = await client.search({
