@@ -2,6 +2,7 @@
 
 import React, { useState, FormEvent } from "react";
 import Filter from "~/components/Filter";
+import Footer from "~/components/Footer";
 
 interface Business {
   image_url: string;

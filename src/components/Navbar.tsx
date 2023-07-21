@@ -13,7 +13,7 @@ function Navbar() {
   };
 
   return (
-    <div className="h-15 flex w-full flex-row items-center justify-between text-center text-black sm:w-full  sm:flex-row">
+    <div className="h-15 flex w-full flex-col items-center justify-between text-center text-black sm:w-full sm:flex-row  sm:flex-row">
       <Link href="/" onClick={handleRefresh}>
         <h1 className="hidden cursor-pointer text-2xl font-bold transition ease-in-out hover:text-blue-600 sm:block">
           HalalNearMe

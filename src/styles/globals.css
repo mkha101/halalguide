@@ -9,6 +9,6 @@ body {
 
 @layer base {
   li {
-    @apply hidden cursor-pointer transition ease-in-out hover:text-blue-600 sm:block;
+    @apply cursor-pointer transition ease-in-out hover:text-blue-600;
   }
 }
