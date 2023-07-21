@@ -3,18 +3,26 @@
 import React from "react";
 import Link from "next/link";
 import { useUser, UserButton } from "@clerk/nextjs";
+import router, { useRouter } from "next/router";
 
 function Navbar() {
   const user = useUser();
 
+  const handleRefresh = () => {
+    router.reload();
+  };
+
   return (
-    <div className="h-15 flex w-full flex-col items-center justify-between text-black sm:w-full  sm:flex-row">
-      <a href="/">
-        <h1 className="cursor-pointer text-2xl font-bold transition ease-in-out hover:text-blue-600">
+    <div className="h-15 flex w-full flex-row items-center justify-between text-center text-black sm:w-full  sm:flex-row">
+      <Link href="/" onClick={handleRefresh}>
+        <h1 className="hidden cursor-pointer text-2xl font-bold transition ease-in-out hover:text-blue-600 sm:block">
           HalalNearMe
         </h1>
-      </a>
-      <ul className="flex flex-row   gap-8 text-base font-semibold sm:gap-10">
+        <h1 className="cursor-pointer text-2xl font-bold transition ease-in-out hover:text-blue-600 sm:hidden">
+          HNM
+        </h1>
+      </Link>
+      <ul className="flex flex-row  items-center gap-8 text-base font-semibold sm:gap-10">
         <Link href="/">
           {" "}
           <li className="">Home</li>

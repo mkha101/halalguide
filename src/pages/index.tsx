@@ -19,6 +19,7 @@ export default function Home() {
   const [halalBusinesses, setHalalBusinesses] = useState<Business[]>([]);
   const [loadingBusinesses, setLoadingBusinesses] = useState(false);
   const [noBusinesses, setNoBusinesses] = useState(false);
+  const [numberOfBusinesses, setNumberOfBusinesses] = useState<number>(0);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -32,11 +33,9 @@ export default function Home() {
       } else {
         const data: Business[] = await response.json();
         await new Promise((resolve) => setTimeout(resolve, 1000));
-
+        setNumberOfBusinesses(data.length);
         setHalalBusinesses(data);
         console.log(data);
-
-        setNoBusinesses(data.length === 0);
       }
     } catch (error) {
       console.error("Error retrieving halal food businesses:", error);
@@ -93,6 +92,13 @@ export default function Home() {
           </form>
 
           <Filter />
+          <div className="flex justify-center">
+            {numberOfBusinesses > 0 && (
+              <p className="text-lg font-semibold text-gray-900">
+                Found ({numberOfBusinesses}) halal businesses
+              </p>
+            )}
+          </div>
           <div role="status">
             {loadingBusinesses && (
               <>
