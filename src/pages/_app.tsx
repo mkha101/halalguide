@@ -14,7 +14,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
   return (
     <ClerkProvider>
       {" "}
-      <div className="mx-auto flex min-h-screen justify-center bg-white">
+      <div className="mx-auto flex min-h-screen justify-center bg-slate-900">
         <div className="min flex w-full max-w-[1400px] flex-col gap-9 px-10 py-8 md:gap-20 md:py-16">
           <Navbar />
           <Component {...pageProps} />

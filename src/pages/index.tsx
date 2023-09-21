@@ -48,16 +48,16 @@ export default function Home() {
 
   return (
     <>
-      <main className="flex flex-col items-center justify-between">
+      <main className="flex flex-col items-center justify-between text-slate-400 ">
         <section className="flex flex-col items-center gap-10">
-          <h1 className="mt-5 text-center text-5xl font-extrabold">
+          <h1 className="mt-5 text-center  text-5xl font-extrabold text-slate-400">
             Make finding halal food options <br /> as easy as it should be
           </h1>
-          <p className="text-center font-semibold">
+          <p className="text-center font-semibold  text-slate-400">
             With this tool find any and every type of cuisine in your area{" "}
             <br /> <span className="text-xl font-bold">ALL HALAL</span>
           </p>
-          <h1 className="text-center text-3xl font-extrabold text-blue-600">
+          <h1 className="text-center text-3xl font-extrabold text-slate-400 ">
             Start Here
           </h1>
 
@@ -69,7 +69,7 @@ export default function Home() {
             <div className="mb-6 flex flex-col items-center">
               <label
                 htmlFor="zip-code"
-                className="mb-2 block text-sm font-medium text-gray-900"
+                className="mb-2 block text-sm font-medium text-slate-400 "
               >
                 Enter Zip Code:
               </label>
@@ -78,7 +78,7 @@ export default function Home() {
                 id="zip"
                 value={zipCode}
                 onChange={(e) => setZipCode(e.target.value)}
-                className="block w-full rounded-lg border border-gray-300 bg-white p-2.5 text-sm"
+                className="block w-full rounded-lg border border-slate-300 bg-white p-2.5 text-sm text-slate-400 "
                 placeholder="Zip Code"
                 required
               />
@@ -86,7 +86,7 @@ export default function Home() {
 
             <button
               type="submit"
-              className="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 sm:w-auto"
+              className="w-full rounded-lg bg-blue-800  px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-800  sm:w-auto"
             >
               Search
             </button>

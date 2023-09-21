@@ -22,12 +22,12 @@ function Navbar() {
   }, []);
 
   return (
-    <div className="h-15 flex w-full items-center justify-between text-center text-black sm:w-full  ">
+    <div className="h-15 flex w-full items-center justify-between text-center text-slate-400 sm:w-full  ">
       <Link href="/" onClick={handleRefresh}>
-        <h1 className="hidden cursor-pointer text-2xl font-bold transition ease-in-out hover:text-blue-600 sm:block">
+        <h1 className="hidden cursor-pointer text-2xl font-bold transition ease-in-out  hover:bg-blue-900 sm:block">
           HalalNearMe
         </h1>
-        <h1 className="cursor-pointer text-2xl font-bold transition ease-in-out hover:text-blue-600 sm:hidden">
+        <h1 className="cursor-pointer text-2xl font-bold transition ease-in-out hover:bg-blue-900 sm:hidden">
           HNM
         </h1>
       </Link>
@@ -56,7 +56,7 @@ function Navbar() {
         {" "}
         <div
           onClick={toggleOpen}
-          className="sm flex cursor-pointer flex-row items-center gap-3 rounded-full border-[1px] border-neutral-200 bg-white p-4 transition hover:shadow-md md:px-2 md:py-1"
+          className="sm flex cursor-pointer flex-row items-center gap-3 rounded-full border-[1px] border-none bg-black p-4 transition hover:shadow-md md:px-2 md:py-1"
         >
           <AiOutlineMenu />
         </div>
@@ -77,7 +77,7 @@ function Navbar() {
             md:w-3/4
           "
         >
-          <div className="flex cursor-pointer flex-col">
+          <div className="flex cursor-pointer flex-col text-black">
             <>
               <MenuItem onClick={() => router.push("/")} label="Home" />
               <MenuItem
