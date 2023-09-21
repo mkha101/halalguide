@@ -55,7 +55,7 @@ export default function contact() {
           </div>
           <button
             type="submit"
-            className="focus:ring-primary-300 rounded-lg bg-blue-700   px-5 py-3 text-center text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-4 sm:w-fit"
+            className="focus:ring-primary-300 rounded-lg bg-blue-800   px-5 py-3 text-center text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-4 sm:w-fit"
           >
             Send message
           </button>

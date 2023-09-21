@@ -24,10 +24,10 @@ function Navbar() {
   return (
     <div className="h-15 flex w-full items-center justify-between text-center text-slate-400 sm:w-full  ">
       <Link href="/" onClick={handleRefresh}>
-        <h1 className="hidden cursor-pointer text-2xl font-bold transition ease-in-out  hover:bg-blue-900 sm:block">
+        <h1 className="hidden cursor-pointer text-2xl font-bold transition ease-in-out  hover:text-blue-600 sm:block">
           HalalNearMe
         </h1>
-        <h1 className="cursor-pointer text-2xl font-bold transition ease-in-out hover:bg-blue-900 sm:hidden">
+        <h1 className="cursor-pointer text-2xl font-bold transition ease-in-out hover:text-blue-600 sm:hidden">
           HNM
         </h1>
       </Link>
